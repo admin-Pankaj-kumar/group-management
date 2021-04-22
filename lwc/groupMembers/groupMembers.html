@@ -1,0 +1,32 @@
+<template>
+     <lightning-card title="Groups">
+         <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-small-size_5-of-12 slds-medium-size_5-of-12 slds-large-size_5-of-12">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered" border="1" cellspacing="0" cellpadding="0" bordercolor="#ccc" style="border-collapse:collapse;">
+                    <thead>
+                        <tr>
+                            <th>Select</th> 
+                            <th>Group Name</th>               
+                        </tr>
+                    </thead>
+                    <template for:each={groups} for:item="group">
+                        <tr key={group.Id}>
+                            <td><lightning-input type="radio" name="radioButtonSelect" value={group.Id} onchange={handleChangeRadio}></lightning-input></td>
+                            <td>{group.Name}</td>             
+                        </tr>
+                    </template>
+                </table>
+            </div>
+            <div class="slds-col slds-small-size_2-of-12 slds-medium-size_2-of-12 slds-large-size_2-of-12"></div>
+            <div class="slds-col slds-small-size_5-of-12 slds-medium-size_5-of-12 slds-large-size_5-of-12">
+                <div if:true={showMembers}>
+                     <lightning-card title={groupMembersHeader} variant="Narrow"  icon-name="standard:opportunity">
+                        <template for:each={groupsMembers} for:item="group"> 
+                            <img key={group.Id} src={imgurl} alt={group.Member__r.Name} style="border-radius: 50%;height: 50px" />
+                        </template>
+                     </lightning-card>
+                </div>
+            </div>
+         </div>
+   </lightning-card> 
+</template>
